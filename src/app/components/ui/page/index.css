@@ -1,0 +1,9 @@
+.Page {
+	min-height: 100vh;
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+.Page_content {
+	flex: 1;
+}
