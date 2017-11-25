@@ -4,9 +4,11 @@ import { Search } from './index';
 
 describe('Search', () => {
   let wrapper;
+  const artist = __fixtures__.artist;
 
   const mockActions = () => ({
-    fetchArtist: jest.fn(),
+    fetchArtist: jest.fn().mockReturnValueOnce(artist),
+    setArtist: jest.fn(),
   });
 
   const inputHelper = value => {
@@ -16,6 +18,16 @@ describe('Search', () => {
   it('renders without crashing', () => {
     wrapper = shallow(<Search {...mockActions()} />);
     expect(wrapper).toBeDefined();
+  });
+
+  it('update fetched artist', async () => {
+    const actions = mockActions();
+    wrapper = shallow(<Search {...actions} />);
+    wrapper.setState({ artistName: 'foo' });
+
+    await wrapper.instance().fetch();
+
+    expect(actions.setArtist).toHaveBeenCalledWith(artist);
   });
 
   /*

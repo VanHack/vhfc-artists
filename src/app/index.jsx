@@ -6,7 +6,7 @@ import { Provider } from 'redux-zero/react';
 import './index.css';
 import store from './redux/store';
 import Page from './components/ui/page/index';
-import ArtistSearch from './containers/search/index';
+import Search from './containers/search/index';
 
 class App extends React.Component<{}> {
   render() {
@@ -16,7 +16,7 @@ class App extends React.Component<{}> {
           <Page>
             <BrowserRouter>
               <Switch>
-                <Route exact path="/" component={ArtistSearch} />
+                <Route exact path="/" component={Search} />
               </Switch>
             </BrowserRouter>
           </Page>
