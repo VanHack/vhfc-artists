@@ -6,7 +6,7 @@ import { Provider } from 'redux-zero/react';
 import './index.css';
 import store from './redux/store';
 import Page from './components/ui/page/index';
-import Search from './containers/search/index';
+import Search from './containers/artist-search/index';
 
 class App extends React.Component<{}> {
   render() {
