@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { connect } from 'redux-zero/react';
 
+import './index.css';
 import type { ArtistEventType, ArtistType } from '../../../types/index';
 import actions from '../../redux/actions';
 import api from '../../../utils/api';
@@ -42,8 +43,29 @@ export class ArtistSearch extends React.Component<Props, State> {
     this.props.setEvents(events);
   };
 
-  render() {
+  renderEvents = () => {
+    return (
+      <div className="ArtistEvent_eventsWrapper">
+        <h3 className="ArtistSearch_title">Upcoming concerts:</h3>
+        {this.props.events.map(event => (
+          <ArtistEvent key={event.id} event={event} />
+        ))}
+      </div>
+    );
+  };
+
+  renderShowsOrMessage = () => {
     const { artist, events } = this.props;
+
+    if (artist && events.length > 0) return this.renderEvents();
+    if (artist && events.length === 0)
+      return <h3 className="text-center">no upcoming concerts, <br />sorry :/</h3>;
+
+    return null;
+  };
+
+  render() {
+    const { artist } = this.props;
     return (
       <div className="ArtistSearch">
         <Search
@@ -52,8 +74,7 @@ export class ArtistSearch extends React.Component<Props, State> {
         />
         <ArtistDetails artist={artist} />
         <div className="hr" />
-        {events.length > 0 &&
-          events.map(event => <ArtistEvent key={event.id} event={event} />)}
+        {this.renderShowsOrMessage()}
       </div>
     );
   }

@@ -1,6 +1,6 @@
 .ArtistDetails {
 	text-align: center;
-	padding: 20px;
+	margin-top: 20px;
 }
 
 .ArtistDetails_name {
@@ -10,10 +10,7 @@
 
 .ArtistDetails_picture {
 	position: relative;
-	display: block;
-}
-
-.ArtistDetails_picture_instance {
+	display: inline-block;
 }
 
 .ArtistDetails_facebook {
