@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { ArtistSearch } from './index';
+import ArtistDetails from '../../components/artists/details/index';
 
 describe('ArtistSearch', () => {
   let wrapper;
@@ -35,5 +36,15 @@ describe('ArtistSearch', () => {
     await wrapper.instance().onSearchValueChange('bar');
 
     expect(props.setArtist).toBeCalledWith(null);
+  });
+
+  it('render artist details', () => {
+    wrapper = shallow(<ArtistSearch {...mockProps()} artist={mockedArtist} />);
+
+    const artistInfo = wrapper.find(ArtistDetails);
+
+    expect(artistInfo.length).toEqual(1);
+
+    expect(artistInfo.props().artist).toEqual(mockedArtist);
   });
 });

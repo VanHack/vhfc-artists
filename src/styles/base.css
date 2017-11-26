@@ -5,3 +5,7 @@ body {
 	background-color: #3a3a3a;
 	color: #fff;
 }
+
+img {
+	max-width: 100%;
+}

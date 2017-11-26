@@ -1,0 +1,30 @@
+.ArtistDetails {
+	text-align: center;
+	padding: 20px;
+}
+
+.ArtistDetails_name {
+	font-size: 3rem;
+	margin: 10px 0;
+}
+
+.ArtistDetails_picture {
+	position: relative;
+	display: block;
+}
+
+.ArtistDetails_picture_instance {
+}
+
+.ArtistDetails_facebook {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 4rem;
+	line-height: 4rem;
+	color: white;
+	background-color: #4468b0;
+	font-size: 1.8rem;
+	border-top: 1px solid rgba(0,0,0,0.2);
+}

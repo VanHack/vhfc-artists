@@ -1,12 +1,12 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'redux-zero/react';
-import debounce from 'lodash/debounce';
 
 import type { ArtistType } from '../../../types/index';
 import actions from '../../redux/actions';
 import api from '../../../utils/api';
 import Search from '../../components/ui/search/index';
+import ArtistDetails from '../../components/artists/details/index';
 
 type Props = {
   artist: ArtistType,
@@ -37,7 +37,7 @@ export class ArtistSearch extends React.Component<Props, State> {
           onInputChangeValue={this.onSearchValueChange}
           debounceInterval={300}
         />
-        {artist && artist.name}
+        <ArtistDetails artist={artist} />
       </div>
     );
   }
