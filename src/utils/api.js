@@ -1,13 +1,12 @@
 // @flow
-
 import env from './env';
 
-import type { ArtistType } from '../types/index';
+import type { ArtistEventType, ArtistType } from '../types/index';
 
 const API_URL = env('API_URL');
 const API_KEY = env('API_KEY');
 
-function apiUrl(resource: string) {
+function apiUrl(resource: string): string {
   return `${(API_URL: string)}${resource}?app_id=${API_KEY}`;
 }
 
@@ -26,4 +25,14 @@ export default {
         return artist;
       });
   },
+  fetchArtistEvents: (artistName: string): Promise<ArtistEventType[]> => {
+    return fetch(apiUrl(`/artists/${artistName}/events`))
+      .then(response => {
+        try {
+          return response.json();
+        } catch (err) {
+          return []
+        }
+      });
+  }
 };

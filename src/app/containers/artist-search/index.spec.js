@@ -2,14 +2,21 @@ import React from 'react';
 
 import { ArtistSearch } from './index';
 import ArtistDetails from '../../components/artists/details/index';
+import ArtistEvent from '../../components/artists/event/index';
 
 describe('ArtistSearch', () => {
   let wrapper;
   const mockedArtist = __fixtures__.artist;
+  const mockedEvents = [
+    { ...__fixtures__.event, id: 1 },
+    { ...__fixtures__.event, id: 2 },
+  ];
 
   const mockProps = () => ({
     fetchArtist: jest.fn().mockReturnValueOnce(mockedArtist),
+    fetchArtistEvents: jest.fn().mockReturnValueOnce(mockedEvents),
     setArtist: jest.fn(),
+    setEvents: jest.fn(),
   });
 
   it('renders without crashing', () => {
@@ -17,13 +24,21 @@ describe('ArtistSearch', () => {
     expect(wrapper).toBeDefined();
   });
 
-  it('fetch and update artist', async () => {
+  it('fetches and update artist', async () => {
     const props = mockProps();
     wrapper = shallow(<ArtistSearch {...props} />);
 
     await wrapper.instance().onSearchValueChange('foo');
 
     expect(props.setArtist).toHaveBeenCalledWith(mockedArtist);
+  });
+
+  it('fetches and update events', async () => {
+    const props = mockProps();
+    wrapper = shallow(<ArtistSearch {...props} />);
+
+    await wrapper.instance().onSearchValueChange('foo');
+    expect(props.setEvents).toHaveBeenCalledWith(mockedEvents);
   });
 
   it('set artist as null on error', async () => {
@@ -46,5 +61,23 @@ describe('ArtistSearch', () => {
     expect(artistInfo.length).toEqual(1);
 
     expect(artistInfo.props().artist).toEqual(mockedArtist);
+  });
+
+  it('render artist events', () => {
+    wrapper = shallow(
+      <ArtistSearch
+        {...mockProps()}
+        artist={mockedArtist}
+        events={mockedEvents}
+      />,
+    );
+
+    expect(wrapper.find(ArtistEvent).length).toEqual(2);
+    expect(
+      wrapper
+        .find(ArtistEvent)
+        .at(0)
+        .props().event,
+    ).toEqual(mockedEvents[0]);
   });
 });

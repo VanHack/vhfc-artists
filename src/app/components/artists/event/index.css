@@ -1,0 +1,26 @@
+.ArtistEvent {
+	background-color: #cecece;
+	margin: 10px 20px;
+	font-size: 1.8rem;
+	border: 1px solid #63636d;
+	border-radius: 6px;
+	color: #2a2a2a;
+}
+
+.ArtistEvent_row {
+	padding: 6px 15px;
+	border-bottom: 1px solid #b3b3b3;
+	display: flex;
+	align-items: center;
+}
+
+.ArtistEvent_row:last-child {
+	border-bottom: 0;
+}
+
+.ArtistEvent .fa {
+	min-width: 20px;
+	text-align: center;
+	font-size: 2.2rem;
+	margin-right: 10px;
+}

@@ -9,13 +9,6 @@ type Props = {
 };
 
 export default function ArtistDetails({ artist }: Props) {
-  const redirectToFacebook = (
-    event: SyntheticMouseEvent<HTMLAnchorElement>,
-    artist: ArtistType | null,
-  ) => {
-    if (!artist || !artist.facebook_page_url) event.preventDefault();
-  };
-
   if (!artist) return null;
   return (
     <div className="ArtistDetails">
